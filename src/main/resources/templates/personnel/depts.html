@@ -1,0 +1,124 @@
+<!doctype html>
+<html class="x-admin-sm" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>IOT设备管理系统</title>
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8,target-densitydpi=low-dpi" />
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <link rel="stylesheet" th:href="@{/css/font.css}">
+    <link rel="stylesheet" th:href="@{/css/xadmin.css}">
+    <!-- <link rel="stylesheet" href="./css/theme5.css"> -->
+    <script th:src="@{/lib/layui/layui.js}" charset="utf-8"></script>
+    <script type="text/javascript" th:src="@{/js/xadmin.js}"></script>
+    <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+    <!-- 让IE8/9支持媒体查询，从而兼容栅格 -->
+    <!--[if lt IE 9]>
+    <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
+    <script src="https://cdn.staticfile.org/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <script>
+        // 是否开启刷新记忆tab功能
+        // var is_remember = false;
+    </script>
+</head>
+
+<body class="index">
+    <!-- 顶部开始 -->
+    <div th:replace="personnel/commons/bar::topbar"></div>
+    <!-- 顶部结束 -->
+    <!-- 中部开始 -->
+    <!-- 左侧菜单开始 -->
+    <div th:replace="personnel/commons/bar::sidebar"></div>
+    <!-- <div class="x-slide_left"></div> -->
+    <!-- 左侧菜单结束 -->
+    <!-- 右侧主体开始 -->
+    <div class="page-content" style="overflow:auto;">
+        <div class="layui-tab tab" lay-filter="xbs_tab" lay-allowclose="false">
+            <div class="layui-tab-item layui-show">
+                <div class="layui-card">
+                    <div class="layui-card-body">
+                        <blockquote class="layui-elem-quote">
+                            部署位置管理
+                        </blockquote>
+                        <div class="layui-card-header">
+                            <a th:href="@{/dept}"><i class="layui-icon"></i>部署位置添加</a>
+                        </div>
+                        <table class="layui-table layui-form">
+                            <thead>
+                                <th>部署位置名称</th>
+                                <th>部署位置职能</th>
+                                <th>操作</th>
+                            </thead>
+                            <tbody>
+                                <tr th:each="dept:${depts}">
+                                    <td th:text="${dept.name}"></td>
+                                    <td th:text="${dept.comment}"></td>
+                                    <td>
+                                        <a th:href="@{/dept/}+${dept.id}">修改</a>
+                                        <button th:attr="del_uri=@{/dept/}+${dept.id}" class="deleteBtn">删除</button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <blockquote class="layui-elem-quote">
+                            设备权限管理
+                        </blockquote>
+                        <div class="layui-card-header">
+                            <a th:href="@{/pos}"><i class="layui-icon"></i>设备权限添加</a>
+                        </div>
+                        <table class="layui-table layui-form">
+                            <thead>
+                                <th>设备权限</th>
+                                <th>设备权限代码</th>
+                                <th>设备部署位置</th>
+                                <th>设备IP地址</th>
+                                <th>设备名称</th>
+                                <th>操作</th>
+                            </thead>
+                            <tbody>
+                                <tr th:each="pos:${positions}">
+                                    <td th:text="${pos.name}"></td>
+                                    <td th:text="${pos.salary}"></td>
+                                    <td th:text="${pos.location.name}"></td>
+                                    <td th:text="${pos.employee} eq null?'暂无':${pos.employee.username}"></td>
+                                    <td th:text="${pos.employee} eq null?'暂无':${pos.employee.realname}"></td>
+                                    <td>
+                                        <a th:href="@{/pos/}+${pos.id}">修改</a>
+                                        <button th:attr="del_uri=@{/pos/}+${pos.id}" class="delPosBtn">删除</button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <form id="deleteDeptForm" method="post">
+                        <input type="hidden" name="_method" value="delete" />
+                    </form>
+                    <form id="deletePosForm" method="post">
+                        <input type="hidden" name="_method" value="delete" />
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="page-content-bg"></div>
+    <style id="theme_style"></style>
+    <script>
+        $(".deleteBtn").click(function() {
+            if (confirm("确定要删除部署位置及部署位置下的所有设备权限吗?")) {
+                $("#deleteDeptForm").attr("action", $(this).attr("del_uri")).submit();
+            }
+            return false;
+        });
+        $(".delPosBtn").click(function() {
+            if (confirm("确定要删除该设备权限吗？")) {
+                $("#deletePosForm").attr("action", $(this).attr("del_uri")).submit();
+            }
+            return false;
+        });
+    </script>
+</body>
+
+</html>

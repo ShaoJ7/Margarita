@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>IOT设备管理系统</title>
+</head>
+
+<body>
+    <!-- 顶部开始 -->
+    <div class="container" th:fragment="topbar">
+        <div class="logo">
+            <a href="#">Margarita</a></div>
+        <div class="left_open">
+            <a><i title="展开左侧栏" class="iconfont">&#xe699;</i></a>
+        </div>
+        <ul class="layui-nav right" lay-filter="">
+            <li class="layui-nav-item">
+                <a href="javascript:;">设备信息：[[${session.loginUser}]]&nbsp;&nbsp;权限:[[${session.loginPos}]]</a>
+                <dl class="layui-nav-child">
+                    <!-- 二级菜单 -->
+                    <dd>
+                        <a th:href="@{/info}">设备信息</a></dd>
+                    <dd>
+                        <a th:href="@{/quit}">断开</a></dd>
+                </dl>
+            </li>
+        </ul>
+    </div>
+    <!-- 顶部结束 -->
+    <!-- 中部开始 -->
+    <!-- 左侧菜单开始 -->
+    <div class="left-nav" th:fragment="sidebar">
+        <div id="side-nav">
+            <ul id="nav">
+                <li>
+                    <a th:href="@{/updpwd}">
+                        <i class="iconfont left-nav-li" lay-tips="设备端口修改">&#xe6b8;</i>
+                        <cite>设备端口修改</cite>
+                    </a>
+                </li>
+                <li>
+                    <a th:href="@{/empsel}">
+                        <i class="iconfont left-nav-li" lay-tips="职工信息查询">&#xe723;</i>
+                        <cite>设备信息查询</cite>
+                    </a>
+                </li>
+                <li>
+                    <a th:href="@{/salary}">
+                        <i class="iconfont left-nav-li" lay-tips="设备信息">&#xe723;</i>
+                        <cite>文件中转</cite>
+                    </a>
+                </li>
+                <li>
+                    <a th:href="@{/profile}">
+                        <i class="iconfont left-nav-li" lay-tips="企业概况">&#xe723;</i>
+                        <cite>系统概况</cite>
+                    </a>
+                </li>
+                <li>
+                    <a th:href="@{/disposes}">
+                        <i class="iconfont left-nav-li" lay-tips="请假申请处理">&#xe723;</i>
+                        <cite>请假申请处理</cite>
+                    </a>
+                </li>
+                <li>
+                    <a th:href="@{/employee}">
+                        <i class="iconfont left-nav-li" lay-tips="员工信息">&#xe723;</i>
+                        <cite>员工信息</cite>
+                    </a>
+                </li>
+                <li>
+                    <a href="javascript:;">
+                        <i class="iconfont left-nav-li" lay-tips="工作记录">&#xe723;</i>
+                        <cite>工作记录</cite>
+                        <i class="iconfont nav_right">&#xe697;</i></a>
+                    <ul class="sub-menu">
+                        <li>
+                            <a th:href="@{/memos}">
+                                <i class="iconfont">&#xe6a7;</i>
+                                <cite>备忘录</cite></a>
+                        </li>
+                        <li>
+                            <a th:href="@{/checking}">
+                                <i class="iconfont">&#xe6a7;</i>
+                                <cite>考勤</cite></a>
+                        </li>
+                        <li>
+                            <a th:href="@{/requests}">
+                                <i class="iconfont">&#xe6a7;</i>
+                                <cite>请假申请</cite></a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="javascript:;">
+                        <i class="iconfont left-nav-li" lay-tips="设备权限需求">&#xe723;</i>
+                        <cite>设备权限需求</cite>
+                        <i class="iconfont nav_right">&#xe697;</i></a>
+                    <ul class="sub-menu">
+                        <li>
+                            <a th:href="@{empleave}">
+                                <i class="iconfont">&#xe6a7;</i>
+                                <cite>我要下线</cite></a>
+                        </li>
+                        <li>
+                            <a th:href="@{/poschange}">
+                                <i class="iconfont">&#xe6a7;</i>
+                                <cite>调动部署</cite></a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="javascript:;">
+                        <i class="iconfont left-nav-li" lay-tips="部署需求">&#xe723;</i>
+                        <cite>部署位置部署管理</cite>
+                        <i class="iconfont nav_right">&#xe697;</i></a>
+                    <ul class="sub-menu">
+                        <li>
+                            <a th:href="@{/dealempleave}">
+                                <i class="iconfont">&#xe6a7;</i>
+                                <cite>员工下线处理</cite></a>
+                        </li>
+                        <li>
+                            <a th:href="@{/dealempposchge}">
+                                <i class="iconfont">&#xe6a7;</i>
+                                <cite>员工调岗处理</cite></a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="javascript:;">
+                        <i class="iconfont left-nav-li" lay-tips="部署变动">&#xe723;</i>
+                        <cite>部署变动</cite>
+                        <i class="iconfont nav_right">&#xe697;</i></a>
+                    <ul class="sub-menu">
+                        <li>
+                            <a th:href="@{/gmdealelr}">
+                                <i class="iconfont">&#xe6a7;</i>
+                                <cite>取消设备部署</cite></a>
+                        </li>
+                        <li>
+                            <a th:href="@{/gmdealepc}">
+                                <i class="iconfont">&#xe6a7;</i>
+                                <cite>部署调动处理</cite></a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="javascript:;">
+                        <i class="iconfont left-nav-li" lay-tips="工作记录">&#xe723;</i>
+                        <cite>工作记录</cite>
+                        <i class="iconfont nav_right">&#xe697;</i></a>
+                    <ul class="sub-menu">
+                        <li>
+                            <a th:href="@{/memos}">
+                                <i class="iconfont">&#xe6a7;</i>
+                                <cite>备忘录</cite></a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="javascript:;">
+                        <i class="iconfont left-nav-li" lay-tips="我的信箱">&#xe723;</i>
+                        <cite>我的信箱</cite>
+                        <i class="iconfont nav_right">&#xe697;</i></a>
+                    <ul class="sub-menu">
+                        <li>
+                            <a th:href="@{/send}">
+                                <i class="iconfont">&#xe6a7;</i>
+                                <cite>发邮件</cite></a>
+                        </li>
+                        <li>
+                            <a th:href="@{/receive}">
+                                <i class="iconfont">&#xe6a7;</i>
+                                <cite>收件箱</cite></a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</body>
+
+</html>

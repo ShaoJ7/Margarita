@@ -1,0 +1,258 @@
+<!doctype html>
+<html class="x-admin-sm" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>IOT设备管理系统</title>
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8,target-densitydpi=low-dpi" />
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <link rel="stylesheet" th:href="@{/css/font.css}">
+    <link rel="stylesheet" th:href="@{/css/xadmin.css}">
+    <!-- <link rel="stylesheet" href="./css/theme5.css"> -->
+    <script th:src="@{/lib/layui/layui.js}" charset="utf-8"></script>
+    <script type="text/javascript" th:src="@{/js/xadmin.js}"></script>
+    <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+    <!-- 让IE8/9支持媒体查询，从而兼容栅格 -->
+    <!--[if lt IE 9]>
+    <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
+    <script src="https://cdn.staticfile.org/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <script>
+        // 是否开启刷新记忆tab功能
+        // var is_remember = false;
+    </script>
+</head>
+
+<body class="index">
+    <!-- 顶部开始 -->
+    <div th:replace="personnel/commons/bar::topbar"></div>
+    <!-- 顶部结束 -->
+    <!-- 中部开始 -->
+    <!-- 左侧菜单开始 -->
+    <div th:replace="personnel/commons/bar::sidebar"></div>
+    <!-- <div class="x-slide_left"></div> -->
+    <!-- 左侧菜单结束 -->
+    <!-- 右侧主体开始 -->
+    <div class="page-content">
+        <blockquote class="layui-elem-quote">
+            设备基本信息填写
+        </blockquote>
+        <div class="layui-form-item">
+            <label for="username" class="layui-form-label">
+            <span class="x-red">*</span>设备IP地址
+        </label>
+            <div class="layui-input-inline">
+                <input type="text" id="username" name="username" required="" lay-verify="" autocomplete="off" class="layui-input">
+            </div>
+            <div class="layui-form-mid layui-word-aux">
+                <span class="x-red">*</span>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label for="deviceport" class="layui-form-label">
+            <span class="x-red">*</span>设备登录密码
+        </label>
+            <div class="layui-input-inline">
+                <input type="text" id="deviceport" name="deviceport" required="" lay-verify="" autocomplete="off" class="layui-input">
+            </div>
+            <div class="layui-form-mid layui-word-aux">
+                <span class="x-red">*</span>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label for="realname" class="layui-form-label">
+            <span class="x-red">*</span>设备设备名称
+        </label>
+            <div class="layui-input-inline">
+                <input type="text" id="realname" name="realname" required="" lay-verify="" autocomplete="off" class="layui-input">
+            </div>
+            <div class="layui-form-mid layui-word-aux">
+                <span class="x-red">*</span>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">
+            <span class="x-red">*</span>设备类别
+        </label>
+            <div class="layui-inline layui-show-xs-block">
+                <select name="category" id="category">
+                <option value="MAN">控制</option>
+                <option value="WOMEN">设备</option>
+            </select>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label for="address" class="layui-form-label">
+            <span class="x-red">*</span>设备生产厂家
+        </label>
+            <div class="layui-input-inline">
+                <input type="text" id="address" name="address" required="" lay-verify="" autocomplete="off" class="layui-input">
+            </div>
+            <div class="layui-form-mid layui-word-aux">
+                <span class="x-red">*</span>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label for="email" class="layui-form-label">
+            <span class="x-red">*</span>设备email
+        </label>
+            <div class="layui-input-inline">
+                <input type="text" id="email" name="email" required="" lay-verify="" autocomplete="off" class="layui-input">
+            </div>
+            <div class="layui-form-mid layui-word-aux">
+                <span class="x-red">*</span>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label for="birth" class="layui-form-label">
+            <span class="x-red">*</span>设备生产日期
+        </label>
+            <div class="layui-input-inline">
+                <input type="date" id="birth" name="birth" required="" lay-verify="" autocomplete="off" class="layui-input">
+            </div>
+            <div class="layui-form-mid layui-word-aux">
+                <span class="x-red">*</span>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label for="nation" class="layui-form-label">
+            <span class="x-red">*</span>设备民族
+        </label>
+            <div class="layui-input-inline">
+                <input type="text" id="nation" name="nation" required="" lay-verify="" autocomplete="off" class="layui-input">
+            </div>
+            <div class="layui-form-mid layui-word-aux">
+                <span class="x-red">*</span>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label for="bankcard" class="layui-form-label">
+            <span class="x-red">*</span>设备银行卡号
+        </label>
+            <div class="layui-input-inline">
+                <input type="text" id="bankcard" name="bankcard" required="" lay-verify="" autocomplete="off" class="layui-input">
+            </div>
+            <div class="layui-form-mid layui-word-aux">
+                <span class="x-red">*</span>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label for="telphone" class="layui-form-label">
+            <span class="x-red">*</span>设备手机号码
+        </label>
+            <div class="layui-input-inline">
+                <input type="text" id="telphone" name="telphone" required="" lay-verify="" autocomplete="off" class="layui-input">
+            </div>
+            <div class="layui-form-mid layui-word-aux">
+                <span class="x-red">*</span>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label for="age" class="layui-form-label">
+            <span class="x-red">*</span>设备使用年限
+        </label>
+            <div class="layui-input-inline">
+                <input type="text" id="age" name="age" required="" lay-verify="" autocomplete="off" class="layui-input">
+            </div>
+            <div class="layui-form-mid layui-word-aux">
+                <span class="x-red">*</span>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label for="identity" class="layui-form-label">
+            <span class="x-red">*</span>设备身份证号码
+        </label>
+            <div class="layui-input-inline">
+                <input type="text" id="identity" name="identity" required="" lay-verify="" autocomplete="off" class="layui-input">
+            </div>
+            <div class="layui-form-mid layui-word-aux">
+                <span class="x-red">*</span>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label for="education" class="layui-form-label">
+            <span class="x-red">*</span>设备教育背景
+        </label>
+            <div class="layui-input-inline">
+                <input type="text" id="education" name="education" required="" lay-verify="" autocomplete="off" class="layui-input">
+            </div>
+            <div class="layui-form-mid layui-word-aux">
+                <span class="x-red">*</span>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label for="experience" class="layui-form-label">
+            <span class="x-red">*</span>设备工作经验
+        </label>
+            <div class="layui-input-inline">
+                <input type="text" id="experience" name="experience" required="" lay-verify="" autocomplete="off" class="layui-input">
+            </div>
+            <div class="layui-form-mid layui-word-aux">
+                <span class="x-red">*</span>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label for="add" class="layui-form-label"></label>
+            <button class="layui-btn" lay-filter="add" id="add">添加</button></div>
+    </div>
+    <div class="page-content-bg"></div>
+    <style id="theme_style"></style>
+    <script>
+        $(function() {
+            $("#add").click(function() {
+                var username = $("#username").val();
+                var deviceport = $("#deviceport").val();
+                var realname = $("#realname").val();
+                var category = $("#category").val();
+                var address = $("#address").val();
+                var email = $("#email").val();
+                var birth = $("#birth").val();
+                var nation = $("#nation").val();
+                var bankcard = $("#bankcard").val();
+                var telphone = $("#telphone").val();
+                var age = $("#age").val();
+                var identity = $("#identity").val();
+                var education = $("#education").val();
+                var experience = $("#experience").val();
+                if (username === '' || deviceport === '' || realname === '' || category === '' || address === '' || email === '' || birth === '' ||
+                    nation === '' || bankcard === '' || telphone === '' || age === '' ||
+                    identity === '' || education === '' || experience === '') {
+                    alert("必填项不能为空");
+                    return false;
+                }
+                $.ajax({
+                    type: "post",
+                    url: "/entry",
+                    data: {
+                        username: username,
+                        deviceport: deviceport,
+                        realname: realname,
+                        category: category,
+                        address: address,
+                        email: email,
+                        birth: birth,
+                        nation: nation,
+                        bankcard: bankcard,
+                        telphone: telphone,
+                        age: age,
+                        identity: identity,
+                        education: education,
+                        experience: experience
+                    },
+                    success: function(data) {
+                        if (JSON.stringify(data).match("该设备IP地址已存在")) {
+                            alert(JSON.stringify(data));
+                            return false;
+                        }
+                        alert(JSON.stringify(data));
+                        window.location.href = "/emps";
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>
